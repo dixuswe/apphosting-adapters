@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { initializeApp, getApps } from "firebase/app";
+console.log("Connected to Firebase Project:", app.options.projectId);
+
 
 export default function Home() {
   const message = process.env["MESSAGE"] || "Hello!";
