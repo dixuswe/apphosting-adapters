@@ -1,14 +1,21 @@
 import Link from "next/link";
 import { initializeApp, getApps } from "firebase/app";
-console.log("Connected to Firebase Project:", app.options.projectId);
 
+// Zero arguments: automatically picks up FIREBASE_WEBAPP_CONFIG in App Hosting!
+const app = getApps().length === 0 ? initializeApp() : getApps()[0];
 
 export default function Home() {
   const message = process.env["MESSAGE"] || "Hello!";
+  const projectId = app.options.projectId;
+
   return (
     <main className="content">
       <h1 className="heading">Next.js on Firebase App Hosting</h1>
       <p>{message}</p>
+
+      <p style={{ color: "#0070f3", fontWeight: "bold", margin: "1rem 0" }}>
+        Firebase Auto-init Project: {projectId || "Unknown"}
+      </p>
 
       <section className="features">
         <article className="card">
